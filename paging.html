@@ -1,0 +1,35 @@
+<!-- Created by: fei on date: 2017/8/15. -->
+<style>
+    .active-page{
+        color: white !important;
+        background: #5daee3 !important;
+    }
+    .in-active-page{
+        color: #ccc !important;
+        background: white !important;
+    }
+    .pagination a{
+        cursor: pointer;
+    }
+    .disabled-page{
+        color: white !important;
+        background: #efefef !important;
+        cursor: not-allowed;
+        pointer-events:none;
+    }
+</style>
+
+<div class="row content-paging text-right">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <ul class="pagination">
+            <li ng-click="turnpage('first', localpageno);"><a ng-class="{true: 'disabled-page'}[paging.startPageNum==paging.pageNum]">首页</a></li>
+            <li ng-click="turnpage('pre', localpageno);"><a ng-class="{true: 'disabled-page'}[paging.startPageNum==paging.pageNum]">上一页</a></li>
+            <li ng-click="turnpage('local', x);" ng-show="$index>=pagemin && $index<=pagemax" ng-repeat="x in pagearray track by $index">
+                <a ng-if="0===paging.startPageNum" ng-class="{true: 'active-page'}[x==paging.pageNum]">{{x+1}}</a>
+                <a ng-if="1===paging.startPageNum" ng-class="{true: 'active-page'}[x==paging.pageNum]">{{x}}</a>
+            </li>
+            <li ng-click="turnpage('next', localpageno);"><a ng-class="{true: 'disabled-page'}[pagearray[pagearray.length-1]==paging.pageNum]">下一页</a></li>
+            <li ng-click="turnpage('last', localpageno);"><a ng-class="{true: 'disabled-page'}[pagearray[pagearray.length-1]==paging.pageNum]">尾页</a></li>
+        </ul>
+    </div>
+</div>
